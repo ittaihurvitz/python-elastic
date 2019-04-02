@@ -1,0 +1,60 @@
+<title>Demo!!!</title>
+	<link rel="stylesheet" media="screen" href="static/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+<div class="container">
+	<h2>Elasticsearch query demo</h2>
+	
+	<form action="" method="post" role="form">
+		{{ form.csrf }}
+		<div class="form-group">
+			<br>
+			<h4>Simple query</h4>
+			<label for="simple">Enter text:</label>
+			<input type="text" class="form-control" id="simple" name="simple" placeholder="simple:">
+			<br>
+			<button name="submit_button" value="simple" type="submit" class="btn btn-success">Submit</button>
+		</div>
+		<div class="form-group">
+			<br>
+			<h4>Nested query</h4>
+			<label for="nested">Nested:</label>
+			<input type="text" class="form-control" id="nested" name="nested" placeholder="nested:">
+			<br>
+			<button name="submit_button" value="nested" type="submit" class="btn btn-success">Submit</button>
+		</div>
+		<div class="form-group">
+			<br> 
+			<h4>Mixed query</h4>
+			<label for="mixed1">Mixed1 - age:</label>
+			<input type="text" class="form-control" id="mixed1" name="mixed1" placeholder="age">
+			<label for="mixed2">Mixed2 - color:</label>
+			<input type="text" class="form-control" id="mixed2" name="mixed2" placeholder="color">
+			<br> 
+			<button name="submit_button" value="mixed" type="submit" class="btn btn-success">Submit</button>
+		</div>
+			
+	</form>
+	
+	<br>
+	<h4>Results</h4>
+
+	{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+			{% for message in messages %}
+				{% if "Error" not in message[1]: %}
+					<div class="alert alert-info">
+						{{ message[1] }}
+					</div>
+				{% endif %}
+				 
+				{% if "Error" in message[1]: %}
+					<div class="alert alert-warning">
+						{{ message[1] }}
+					</div>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+ 
+</div>
